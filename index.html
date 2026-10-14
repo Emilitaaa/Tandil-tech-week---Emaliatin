@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Tandil Tech Week 2026 - Dos jornadas para construir y conectar. Hacking Day y Startup Day en Tandil, Argentina.">
+    <meta name="theme-color" content="#0d1b12">
+    <title>Tandil Tech Week 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/spacegrotesk/v20/72lnH5nCStgl1tSFVVuNOzRfGG9Q_vftIA.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/jetbrainsmono/v23/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKk.woff2">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- HUD superior -->
+        <header class="hud hud-top" role="banner">
+            <a href="#agenda" class="logo hud-in" aria-label="Tandil Tech Week - Inicio">
+                <svg class="logo-mark logo-piedra" viewBox="0 0 64 48" aria-hidden="true">
+                    <!-- Ladera -->
+                    <path d="M2 46 C 18 44, 40 39, 62 30" stroke="#2dd4a3" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <!-- Piedra movediza: silueta de huevo inclinado, base ancha y pico hacia arriba-derecha -->
+                    <g class="piedra-balancea" stroke="#2dd4a3" stroke-width="2.5" fill="rgba(45,212,163,0.08)" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 38 C 11.5 28, 16.5 13, 27 8.5 C 31 6.8, 35 7.5, 38 10 C 45 15.5, 48.5 24, 46 30.5 C 44 35.5, 38.5 37.2, 33 37.9 C 27.5 38.6, 20 41, 17 38 Z"/>
+                        <path d="M28 15 C 30.5 12.8, 34.5 12.8, 36.5 15.2" fill="none" opacity="0.55"/>
+                        <path d="M29.5 26 C 32.5 24.2, 36 24.8, 38 27.4" fill="none" opacity="0.35"/>
+                        <path d="M22.5 30.5 C 24.5 28.8, 26.8 28.8, 28.5 30.4" fill="none" opacity="0.3"/>
+                    </g>
+                    <!-- Ondas de movimiento -->
+                    <path d="M8.5 42 q 4.5 3, 9 2.6" stroke="#2dd4a3" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.45"/>
+                    <path d="M49.5 37 q 5 0.4, 8.5 -2.6" stroke="#2dd4a3" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.45"/>
+                </svg>
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="hud-nav">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
+            <nav class="hud-nav hud-in" id="hud-nav" aria-label="Navegación principal">
+                <button class="nav-btn" data-target="agenda" aria-label="Agenda del evento">AGENDA</button>
+                <button class="nav-btn" data-target="organizan" aria-label="Quiénes organizan">ORGANIZAN</button>
+                <button class="nav-btn" data-target="acompanan" aria-label="Quiénes acompañan">ACOMPAÑAN</button>
+                <button class="nav-btn" data-target="register" aria-label="Inscripciones">INSCRIPCIONES</button>
+            </nav>
+            <div class="hud-actions hud-in">
+                <a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener" class="icon-btn social-btn" aria-label="Instagram" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://x.com/tandiltechweek" target="_blank" rel="noopener" class="icon-btn social-btn" aria-label="X (Twitter)" title="X">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.69L1.244 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <button class="icon-btn" id="theme-toggle" aria-label="Alternar modo día/noche" aria-pressed="false" title="Tema (T)">
+                    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Contenido principal -->
+        <main class="site-content" id="site-content" role="main">
+            <!-- HERO -->
+            <section id="hero" class="section" data-location="hero">
+                <div class="hero-fondo fondo-scroll" id="hero-fondo" aria-hidden="true"></div>
+                <div class="section-inner">
+                    <div class="hero-content">
+                        <p class="hero-date">14 &amp; 15 OCT. 2026</p>
+                        <h1 class="hero-title" aria-label="Tandil Tech Week">
+                            <span class="typewriter" id="typewriter" data-text="Tandil Tech Week"></span><span class="tw-cursor" aria-hidden="true"></span>
+                        </h1>
+                        <p class="hero-tagline">Un encuentro para <em>construir</em> lo que viene.</p>
+                        <ul class="hero-dias">
+                            <li><span class="flecha">→</span> <strong>Hacking Day</strong> 14 Octubre · Campus Universitario UNICEN</li>
+                            <li><span class="flecha">→</span> <strong>Startup Day</strong> 15 Octubre · Distrito Avellaneda</li>
+                        </ul>
+                        <div class="hero-actions">
+                            <a href="#agenda" class="btn btn-primary" data-nav="agenda">Cronograma <span class="btn-arrow">→</span></a>
+                        </div>
+                        <p class="seguinos">
+                            <span class="seguinos-label">SEGUINOS</span>
+                            <a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener" aria-label="Instagram de Tandil Tech Week">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                @tandiltechweek
+                            </a>
+                            <a href="https://x.com/tandiltechweek" target="_blank" rel="noopener" aria-label="X de Tandil Tech Week">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.69L1.244 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                @tandiltechweek
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MARQUEE -->
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <span>STARTUP DAY</span><span>•</span>
+                    <span>AGRITECH &amp; BIO</span><span>•</span>
+                    <span>SOFTWARE &amp; AI</span><span>•</span>
+                    <span>VENTURE CAPITAL</span><span>•</span>
+                    <span>POLO CIENTÍFICO</span><span>•</span>
+                    <span>FOUNDERS &amp; BUILDERS</span><span>•</span>
+                    <span>UNICEN CAMPUS</span><span>•</span>
+                    <span>STARTUP DAY</span><span>•</span>
+                    <span>AGRITECH &amp; BIO</span><span>•</span>
+                    <span>SOFTWARE &amp; AI</span><span>•</span>
+                    <span>VENTURE CAPITAL</span><span>•</span>
+                    <span>POLO CIENTÍFICO</span><span>•</span>
+                    <span>FOUNDERS &amp; BUILDERS</span><span>•</span>
+                    <span>UNICEN CAMPUS</span><span>•</span>
+                </div>
+            </div>
+
+            <!-- AGENDA -->
+            <section id="agenda" class="section" data-location="agenda">
+                <div class="section-inner">
+                    <header class="section-header">
+                        <span class="section-tag">● COMING SOON</span>
+                        <h2>Dos jornadas para<br>construir y conectar</h2>
+                        <p class="section-subtitle">Dos jornadas muy distintas entre sí: una competencia técnica y un día para conectar. Los horarios detallados, desafíos y charlas se anunciarán próximamente.</p>
+                    </header>
+                    <div class="agenda-grid">
+                        <article class="agenda-card agenda-card--dia1">
+                            <div class="agenda-card-top">
+                                <span class="date-badge">14 OCTUBRE</span>
+                                <span class="card-meta">UNICEN · CAMPUS</span>
+                            </div>
+                            <p class="track track--dia1">TRACK 01 · CIBERSEGURIDAD</p>
+                            <h3>Hacking Day</h3>
+                            <p>Jornada de hacking en equipos. Juntá a tus amigos y vení a divertirte aprendiendo de ciberseguridad.</p>
+                            <hr>
+                            <p class="lugar">Campus Universitario UNICEN</p>
+                            <a href="#register" class="btn btn-block btn-dia1">Ver jornada <span class="btn-arrow">→</span></a>
+                        </article>
+                        <article class="agenda-card agenda-card--dia2">
+                            <div class="agenda-card-top">
+                                <span class="date-badge date-badge--verde">15 OCTUBRE</span>
+                                <span class="card-meta">DISTRITO AVELLANEDA</span>
+                            </div>
+                            <p class="track track--dia2">TRACK 02 · STARTUPS</p>
+                            <h3>Startup Day</h3>
+                            <p>Vení a conocer a los que hacen. Charlas dinámicas y networking entre fundadores, venture capital y estudiantes.</p>
+                            <hr>
+                            <p class="lugar">Distrito Avellaneda · Tandil</p>
+                            <a href="#register" class="btn btn-block btn-dia2">Ver jornada <span class="btn-arrow">→</span></a>
+                        </article>
+                    </div>
+                    <div class="agenda-cta">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Tandil+Tech+Week+2026&amp;dates=20261014T090000/20261015T180000&amp;details=Dos+jornadas+para+construir+y+conectar%3A+Hacking+Day+(14+OCT%2C+Campus+Universitario+UNICEN)+y+Startup+Day+(15+OCT%2C+Distrito+Avellaneda).+Un+encuentro+para+construir+lo+que+viene.&amp;location=Tandil%2C+Buenos+Aires%2C+Argentina" target="_blank" rel="noopener" class="btn btn-ghost btn-calendar">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 9h18"/></svg>
+                            Agendar en Google Calendar <span class="btn-arrow">→</span>
+                        </a>
+                        <p class="agenda-cta-note">14 &amp; 15 de octubre de 2026 · 09:00 a 18:00 · Tandil, Buenos Aires</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ORGANIZAN -->
+            <section id="organizan" class="section" data-location="organizan">
+                <div class="organizan-fondo fondo-scroll" id="organizan-fondo" aria-hidden="true"></div>
+                <div class="section-inner">
+                    <header class="section-header section-header--left">
+                        <p class="kicker">IMPULSORES DEL EVENTO</p>
+                        <h2>Organizan</h2>
+                        <p class="section-subtitle section-subtitle--left">Equipos y fondos que construyen infraestructura, capital, producto y comunidad para el ecosistema tecnológico regional.</p>
+                    </header>
+                    <div class="org-grid">
+                        <article class="org-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">VC FUND</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h3 class="org-logo">Picante</h3>
+                            <a class="org-domain" href="https://picante.fund" target="_blank" rel="noopener">PICANTE.FUND</a>
+                            <p>Acompañan desde el principio a la nueva generación de founders latinoamericanos: AI Natives construyendo productos globales. Confían cuando nadie más confía.</p>
+                            <hr>
+                            <p class="org-cat">Venture Capital</p>
+                        </article>
+                        <article class="org-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">VENTURE LEGAL</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h3 class="org-logo org-logo--resaltado">relaw</h3>
+                            <a class="org-domain" href="https://relaw.io" target="_blank" rel="noopener">RELAW.IO</a>
+                            <p>El partner legal de startups y empresas de tecnología. Expertise legal y visión de negocio, con acompañamiento 360° para crecer en múltiples mercados.</p>
+                            <hr>
+                            <p class="org-cat">Legal Tech</p>
+                        </article>
+                        <article class="org-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">PRODUCT STUDIO</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h3 class="org-logo org-logo--uppercase">Paisanos</h3>
+                            <a class="org-domain" href="https://paisanos.io" target="_blank" rel="noopener">PAISANOS.IO</a>
+                            <p>Estudio global de diseño y desarrollo de productos digitales, acompañando a startups y corporates a crear soluciones que escalan.</p>
+                            <hr>
+                            <p class="org-cat">Product &amp; Tech</p>
+                        </article>
+                        <article class="org-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">COMMUNITY</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h3 class="org-logo">HackTandil</h3>
+                            <a class="org-domain" href="https://hacktandil.org" target="_blank" rel="noopener">HACKTANDIL.ORG</a>
+                            <p>Comunidad tecnológica de Tandil que conecta desarrolladores, estudiantes, emprendedores y entusiastas a través de meetups, hackathons y eventos.</p>
+                            <hr>
+                            <p class="org-cat">Builder Community</p>
+                        </article>
+                        <article class="org-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">TECH PARTNER</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h3 class="org-logo">Geonosis</h3>
+                            <a class="org-domain" href="https://geonosisgroup.com" target="_blank" rel="noopener">GEONOSISGROUP.COM</a>
+                            <p>El brazo tecnológico de startups y empresas, que las acompaña desde la idea hasta el scale-up. Combinando liderazgo técnico, pensamiento de producto y visión de negocio para construir soluciones digitales reales, alineadas con los objetivos de cada etapa.</p>
+                            <hr>
+                            <p class="org-cat">Idea to Scale</p>
+                        </article>
+                        <article class="org-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">BRAND INTELLIGENCE</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <h3 class="org-logo org-logo--lowercase">fardo<sup>®</sup></h3>
+                            <a class="org-domain" href="https://heyfardo.com" target="_blank" rel="noopener">HEYFARDO.COM</a>
+                            <p>La primera plataforma de brand intelligence de Latam. Miden cómo aparece tu marca en ChatGPT, Gemini, Perplexity y Claude, y arman el plan para que la IA te cite y te recomiende.</p>
+                            <hr>
+                            <p class="org-cat">AI Visibility</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACOMPAÑAN -->
+            <section id="acompanan" class="section" data-location="acompanan">
+                <div class="section-inner">
+                    <header class="section-header section-header--left">
+                        <p class="kicker">QUIENES APOYAN EL EVENTO</p>
+                        <h2>Acompañan</h2>
+                        <p class="section-subtitle section-subtitle--left">Sponsors que hacen posible Tandil Tech Week.</p>
+                    </header>
+                    <div class="org-grid org-grid--sponsors">
+                        <article class="org-card sponsor-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">GRUPO ROTONDA</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <div class="sponsor-logo"><span class="sponsor-mark">R</span>ROTONDA</div>
+                            <a class="org-domain" href="https://gruporotonda.com.ar" target="_blank" rel="noopener">GRUPOROTONDA.COM.AR</a>
+                        </article>
+                        <article class="org-card sponsor-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">THE RED GUILD</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <div class="sponsor-logo"><span class="sponsor-mark sponsor-mark--rojo">✿</span>THE RED GUILD</div>
+                            <a class="org-domain" href="https://theredguild.org" target="_blank" rel="noopener">THEREDGUILD.ORG</a>
+                        </article>
+                        <article class="org-card sponsor-card">
+                            <div class="org-card-top">
+                                <span class="org-tag">PAYONEER</span>
+                                <span class="org-arrow" aria-hidden="true">↗</span>
+                            </div>
+                            <div class="sponsor-logo"><span class="sponsor-mark sponsor-mark--arcoiris">◯</span>Payoneer</div>
+                            <a class="org-domain" href="https://payoneer.com" target="_blank" rel="noopener">PAYONEER.COM</a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INSCRIPCIONES -->
+            <section id="register" class="section" data-location="register">
+                <div class="register-fondo fondo-scroll" id="register-fondo" aria-hidden="true"></div>
+                <div class="section-inner">
+                    <div class="register-hero reveal-zoom">
+                        <span class="section-tag">INSCRIPCIONES 2026</span>
+                        <h2>Construyamos<br>juntos lo que viene.</h2>
+                        <p class="section-subtitle">El 17 de septiembre a las 19:00 abren las inscripciones al Hacking Day y al Startup Day. Podés sumarte a una jornada o a las dos.</p>
+                        <p class="register-abiertas">Las inscripciones ya están abiertas.</p>
+                        <div class="register-actions">
+                            <a href="https://www.tandiltechweek.com" target="_blank" rel="noopener" class="btn btn-blanco">Hacking Day <span class="btn-arrow">→</span></a>
+                            <a href="https://www.tandiltechweek.com" target="_blank" rel="noopener" class="btn btn-verde">Startup Day <span class="btn-arrow">→</span></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer" role="contentinfo">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <svg class="logo-mark" viewBox="0 0 120 40" aria-hidden="true">
+                        <path d="M0 35 L8 15 L16 35 M16 35 L24 5 M30 35 L38 15 L46 35 M46 35 L54 5 M58 35 L66 15 L74 35 M74 35 L82 5 M86 35 L94 15 L102 35 M102 35 L110 5" stroke="#2dd4a3" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <text x="60" y="38" text-anchor="middle" font-family="monospace" font-size="10" fill="#2dd4a3" font-weight="700">TANDIL</text>
+                    </svg>
+                    <p>14 &amp; 15 OCT 2026 · Tandil, Argentina</p>
+                </div>
+                <nav class="footer-social" aria-label="Redes sociales">
+                    <a href="https://instagram.com/tandiltechweek" target="_blank" rel="noopener" aria-label="Instagram">@tandiltechweek</a>
+                    <a href="https://x.com/tandiltechweek" target="_blank" rel="noopener" aria-label="X">@tandiltechweek</a>
+                </nav>
+                <nav class="footer-legal" aria-label="Enlaces legales">
+                    <a href="#agenda">Agenda</a>
+                    <a href="#organizan">Organizan</a>
+                    <a href="#acompanan">Acompañan</a>
+                </nav>
+            </div>
+            <p class="footer-copy">Renderizado en tu navegador · Hecho con 💚 desde Tandil</p>
+        </footer>
+
+        <!-- Toast notifications -->
+        <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+        <!-- Cursores personalizados -->
+        <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
